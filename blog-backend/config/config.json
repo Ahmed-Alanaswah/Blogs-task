@@ -2,7 +2,7 @@
   "development": {
     "username": "postgres",
     "password": "1234",
-    "database": "blogdb",
+    "database": "postgres",
     "host": "127.0.0.1",
     "dialect": "postgres",
     "port": 5432
@@ -13,7 +13,7 @@
     "database": "blogdb_test",
     "host": "127.0.0.1",
     "dialect": "postgres",
-    "port": 5433
+    "port": 5432
   },
   "production": {
     "username": "postgres",
@@ -21,6 +21,6 @@
     "database": "blogdb_production",
     "host": "127.0.0.1",
     "dialect": "postgres",
-    "port": 5433
+    "port": 5432
   }
 }

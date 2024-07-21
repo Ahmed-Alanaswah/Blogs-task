@@ -1,0 +1,39 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Node Modules
+node_modules/
+
+# Dependency directories
+frontend-blogApp/node_modules/
+blog-backend/node_modules/
+
+# Build outputs
+dist/
+frontend/dist/
+backend/dist/
+
+# Environment files
+.env
+frontend/.env
+backend/.env
+
+# Angular specific
+frontend/.angular/cache/
+frontend/.angular/coverage/
+
+# IDE and editor specific files
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Temporary files
+tmp/
+temp/
+
+# MacOS specific
+.DS_Store

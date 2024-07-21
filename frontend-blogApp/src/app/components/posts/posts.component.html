@@ -1,0 +1,17 @@
+<div>
+  <button click="gotToProfilet()">profile</button>
+  <h1>Posts</h1>
+  <form (ngSubmit)="addPost()">
+    <textarea
+      [(ngModel)]="newPost.content"
+      name="content"
+      placeholder="Content"
+      required
+    ></textarea>
+    <button type="submit">Add Post</button>
+  </form>
+
+  <div *ngFor="let post of posts">
+    <app-post-detail [post]="post"></app-post-detail>
+  </div>
+</div>
