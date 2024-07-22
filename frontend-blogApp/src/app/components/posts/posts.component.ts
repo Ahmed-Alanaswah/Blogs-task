@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { PostDetailComponent } from '../post-detail/post-detail.component';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-posts',
@@ -14,7 +15,7 @@ import { PostDetailComponent } from '../post-detail/post-detail.component';
 })
 export class PostsComponent implements OnInit {
   posts: any[] = [];
-  newPost = { title: '', content: '' };
+  newPost = { content: '' };
 
   constructor(private postService: PostService, private router: Router) {}
 
@@ -23,19 +24,42 @@ export class PostsComponent implements OnInit {
   }
 
   loadPosts(): void {
-    this.postService.getPosts().subscribe((data) => {
-      this.posts = data;
-    });
+    this.postService.getPosts().subscribe(
+      (data) => {
+        if (Array.isArray(data)) {
+          this.posts = data;
+        } else {
+          console.error('Unexpected data format:', data);
+        }
+      },
+      (error) => {
+        console.error('Error fetching posts:', error);
+      }
+    );
   }
 
   addPost(): void {
-    this.postService.addPost(this.newPost).subscribe((post) => {
-      this.posts.push(post);
-      this.newPost = { title: '', content: '' };
-    });
+    if (this.newPost.content.trim()) {
+      this.postService.addPost(this.newPost).subscribe(
+        (post) => {
+          this.posts.push(post);
+          this.newPost = { content: '' };
+        },
+        (error) => {
+          console.error('Error adding post:', error);
+        }
+      );
+    } else {
+      console.error('Post content cannot be empty');
+    }
   }
 
-  goToProfile(): void {
+  gotToProfile(): void {
     this.router.navigate(['/profile']); // Redirect to a protected route
+  }
+
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['/login']); // Redirect to a protected route
   }
 }

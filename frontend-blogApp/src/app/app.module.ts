@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -12,7 +12,9 @@ import { PostsComponent } from './components/posts/posts.component';
 import { PostDetailComponent } from './components/post-detail/post-detail.component';
 import { PostService } from './services/post.service';
 import { ProfileComponent } from './components/profile/profile.component';
-// import { routes } from './app.routes';
+import { AuthInterceptor } from './services/auth-interceptor.service';
+
+import { routes } from './app.routes';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,9 +29,13 @@ import { ProfileComponent } from './components/profile/profile.component';
     HttpClientModule,
     FormsModule,
     CommonModule,
-    // RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes),
   ],
-  providers: [PostService],
+
+  providers: [
+    PostService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
   // exports: [PostDetailComponent],
 })

@@ -8,14 +8,15 @@ module.exports = (sequelize, DataTypes) => {
         isEmail: true,
       },
     },
-
     password: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-
-    s,
   });
 
+  User.associate = (models) => {
+    User.hasMany(models.Post, { as: "posts" });
+    User.hasMany(models.Comment, { as: "comments" });
+  };
   return User;
 };

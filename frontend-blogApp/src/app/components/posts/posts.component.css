@@ -1,0 +1,21 @@
+.container {
+  max-width: 991px;
+  margin: auto;
+}
+form {
+  display: flex;
+  flex-direction: column;
+}
+button {
+  background-color: blue;
+  color: white;
+  border: 1px solid #ccc;
+  border-radius: 5x;
+  margin: 10px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+textarea {
+  resize: none;
+  padding: 10px;
+}

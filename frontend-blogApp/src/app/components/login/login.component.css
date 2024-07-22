@@ -1,0 +1,20 @@
+.form-container {
+  margin: 50px;
+}
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  height: 100vh;
+  margin: 50px;
+}
+button {
+  background-color: green;
+  color: white;
+  border: 1px solid #ccc;
+  border-radius: 5x;
+  margin: 10px;
+  padding: 10px 15px;
+  cursor: pointer;
+}

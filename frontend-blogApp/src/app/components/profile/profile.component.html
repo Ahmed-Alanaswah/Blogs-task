@@ -1,6 +1,6 @@
-<div>
-  <h1>{{ user.email }}</h1>
-  <h2>Posts</h2>
+<div class="container">
+  <h2>{{ user.email }}</h2>
+  <h3>Posts</h3>
   <div *ngFor="let post of posts">
     <app-post-detail [post]="post"></app-post-detail>
   </div>

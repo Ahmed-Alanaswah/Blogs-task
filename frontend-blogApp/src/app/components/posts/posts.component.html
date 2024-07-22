@@ -1,5 +1,6 @@
-<div>
-  <button click="gotToProfilet()">profile</button>
+<div class="container">
+  <button (click)="gotToProfile()">profile</button>
+  <button (click)="logout()">logout</button>
   <h1>Posts</h1>
   <form (ngSubmit)="addPost()">
     <textarea

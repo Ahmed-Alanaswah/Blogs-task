@@ -1,0 +1,9 @@
+.container {
+  max-width: 991px;
+  margin: auto;
+}
+
+h2,
+h1 {
+  margin-bottom: 20px;
+}

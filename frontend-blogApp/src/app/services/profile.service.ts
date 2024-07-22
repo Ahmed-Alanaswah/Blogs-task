@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -11,6 +11,9 @@ export class ProfileService {
   constructor(private http: HttpClient) {}
 
   getPostsProfile(): Observable<any> {
-    return this.http.get(this.apiUrl);
+    const token = localStorage.getItem('token');
+
+    const headers = new HttpHeaders().set('x-auth-token', token || '');
+    return this.http.get(this.apiUrl, { headers });
   }
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -11,18 +11,25 @@ export class PostService {
   constructor(private http: HttpClient) {}
 
   getPosts(): Observable<any> {
-    return this.http.get(this.apiUrl);
+    const token = localStorage.getItem('token');
+
+    const headers = new HttpHeaders().set('x-auth-token', token || '');
+    return this.http.get(this.apiUrl, { headers });
   }
 
   addPost(post: any): Observable<any> {
-    return this.http.post(this.apiUrl, post);
+    const token = localStorage.getItem('token');
+
+    const headers = new HttpHeaders().set('x-auth-token', token || '');
+    return this.http.post(this.apiUrl, post, { headers });
   }
 
   addComment(postId: number, comment: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/${postId}/comments`, comment);
-  }
+    const token = localStorage.getItem('token');
 
-  // goToProfile() {
-  //   return this.http.get(`http://localhost:3000/api/profile`);
-  // }
+    const headers = new HttpHeaders().set('x-auth-token', token || '');
+    return this.http.post(`${this.apiUrl}/${postId}/comments`, comment, {
+      headers,
+    });
+  }
 }

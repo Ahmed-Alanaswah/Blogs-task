@@ -1,6 +1,7 @@
 <div>
   <p>{{ post.content }}</p>
-  <p>By {{ post.user.name }}</p>
+
+  <p *ngIf="post.user?.email">By {{ post.user?.email }}</p>
 
   <div *ngFor="let comment of post.comments">
     <p>{{ comment.content }}</p>

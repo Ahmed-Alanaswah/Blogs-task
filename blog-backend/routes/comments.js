@@ -6,13 +6,17 @@ const router = express.Router();
 const { Comment } = require("../models");
 // Add Comment
 router.post("/:postId/comments", [auth, validateComment], async (req, res) => {
-  const comment = new Comment({
-    ...req.body,
-    postId: req.params.postId,
-    userId: req.user.id,
-  });
-  await comment.save();
-  res.send(comment);
+  try {
+    const comment = new Comment({
+      ...req.body,
+      postId: req.params.postId,
+      userId: req.user.id,
+    });
+    await comment.save();
+    res.send(comment);
+  } catch (error) {
+    res.json(error);
+  }
 });
 
 module.exports = router;
