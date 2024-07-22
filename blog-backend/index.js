@@ -15,19 +15,9 @@ const User = require("./models/user")(sequelize, DataTypes);
 const Post = require("./models/post")(sequelize, DataTypes);
 const Comment = require("./models/comment")(sequelize, DataTypes);
 
-// Associations
-// User.hasMany(Post);
-// Post.belongsTo(User);
-
-// User.hasMany(Comment);
-// Comment.belongsTo(User);
-
-// Post.hasMany(Comment);
-// Comment.belongsTo(Post);
 User.associate({ Post, Comment });
 Post.associate({ User, Comment });
 Comment.associate({ User, Post });
-// Sync models with database
 
 require("./startup/routes")(app);
 sequelize
